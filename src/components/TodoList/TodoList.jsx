@@ -33,7 +33,7 @@ function TodoList() {
           value={InputValue}
           onChange={handleChange}
         />
-        <button type="submit">Add task</button>
+        <button type="submit">+</button>
       </form>
       <ul className='Newtask-input'>
         <h3> Tasks for today</h3>
