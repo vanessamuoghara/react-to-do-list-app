@@ -1,21 +1,15 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import TodoList from './components/TodoList/TodoList';
+import TodoList from "./components/TodoList/TodoList";
 const App = () => {
-    
-    return (
-        <div className='heading' >
-            
-            
-            <h1> To-do List </h1>
-            
-           <TodoList />
-            
+  return (
+    <div className="heading">
+      <h1> To-do List </h1>
 
-        </div>
-      
-    );
+      <TodoList />
+    </div>
+  );
 };
 
 export default App;
