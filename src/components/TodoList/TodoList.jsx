@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./TodoList.css";
 import NewTask from "../NewTask/NewTask";
 
-
 function TodoList() {
   const [tasks, setTasks] = useState([]);
 
@@ -20,14 +19,12 @@ function TodoList() {
     }
   };
 
-  
-
   return (
     <div>
       <form className="new-task" onSubmit={handleSubmit}>
         <input
           className="newtask-input"
-         type="text"
+          type="text"
           name="taskInput"
           required
         />
@@ -36,13 +33,8 @@ function TodoList() {
       <ul className="newtask-input">
         <h3>Tasks for today</h3>
         {tasks.map((task) => (
-          <NewTask
-          id ={task.id}
-          text={task.text}/>
-
-          
-        ))
-      }
+          <NewTask id={task.id} text={task.text} />
+        ))}
       </ul>
     </div>
   );
