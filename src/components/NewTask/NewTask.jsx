@@ -1,23 +1,40 @@
-
 import React, { useState } from 'react';
-import TodoList from '../TodoList/TodoList';
+import './NewTask.css'
 
-const ListContainer = () => {
-    const [Tasks, setTasks] = useState ([]);
-    const addNewTask = (task) => {
-        setTasks([...Tasks, task]);
-        console.log(task)
-        
-
-    };
+const NewTask = ({ id, text }) => {
+    const [taskComplete, setTaskComplete] = useState ( false );
+    const [dateTime] = useState(new Date().toLocaleString());
+    
+    const toggleCompletion = (id) => {
+        if (taskComplete === true  ) { setTaskComplete(false)}
+        else {setTaskComplete(true)}
+       
+        console.log(taskComplete, 'task complete')
+          
+      };
+    // set task completed and a classname conditional based on that state
     return (
         <div>
-            <TodoList addNewTask = {addNewTask} tasks={Tasks}/>
+            
+            <li key={id} className={taskComplete ? 'completed' : 'incomplete'}>
+                
+           <label className="checkbox">
+             <input
+              type="checkbox"
+              onChange={() => toggleCompletion(id)}
+              />
+              <span className="checkmark"></span>
+             <p className={taskComplete ? 'completed' : 'incomplete'}> {text}
+
+             </p>
+             <span className="task-date">{dateTime}</span>
+            </label>
+          </li>
         </div>
     )
 }
 
-export default ListContainer;
+export default NewTask;
    
 
 // list container: new task at the top, to do component and completed task
