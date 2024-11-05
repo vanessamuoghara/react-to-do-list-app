@@ -5,6 +5,23 @@
     text-align: center;
     border: 0.5rem solid white;
     border-radius: 0.5rem;
-    padding: 5rem;
+    padding: 2rem;
     background-color: white;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+÷
+.completed {
+    color: red;
+    text-decoration: line-through;
+}
+
+.incomplete {
+    color: white;
+}
+
+.task-date {
+    font-size: 0.875rem; 
+    color: white; 
+    margin-left: 40rem; 
 }
