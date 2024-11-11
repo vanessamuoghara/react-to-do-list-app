@@ -1,53 +1,39 @@
-import React, { useState } from 'react';
-import './TodoList.css'
+import React, { useState } from "react";
+import "./TodoList.css";
+import NewTask from "../NewTask/NewTask";
 
 function TodoList() {
-  const [Tasks, setTasks] = useState([]);
-  const [InputValue, setInputValue] = useState('');
-
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-  };
+  const [tasks, setTasks] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
-    if (InputValue.trim()) {
-      setTasks([...Tasks, { text: InputValue, completed: false }]);
-      setInputValue('');
+    const inputValue = e.target.elements.taskInput.value;
+
+    if (inputValue.trim()) {
+      const newTask = {
+        text: inputValue,
+        completed: false,
+      };
+      setTasks([...tasks, newTask]);
+      e.target.reset();
     }
   };
 
-  function toggleCompletion(index) {
-    setTasks(Tasks.map((todo, i) => (
-      i === index ? { ...todo, completed: !todo.completed } : todo
-    )));
-  }
-
   return (
     <div>
-      <form className="New-task" onSubmit={handleSubmit}>
+      <form className="new-task" onSubmit={handleSubmit}>
         <input
-          className="Newtask-input"
+          className="newtask-input"
           type="text"
-          value={InputValue}
-          onChange={handleChange}
+          name="taskInput"
+          required
         />
-        <button type="submit">Add task</button>
+        <button type="submit">+</button>
       </form>
-      <ul className='Newtask-input'>
-        <h3> Tasks for today</h3>
-        {Tasks.map((Tasks, index) => (
-          <li key={index} className={Tasks.completed ? 'completed' : ''} >
-            {/* classnames */}
-            <input
-            className='Newtask-input' 
-              type="checkbox"
-              checked={Tasks.completed}
-              onChange={() => toggleCompletion(index)}
-            />
-            {Tasks.text}
-          </li>
+      <ul className="newtask-input">
+        <h3>Tasks for today</h3>
+        {tasks.map((task) => (
+          <NewTask id={task.id} text={task.text} />
         ))}
       </ul>
     </div>
@@ -55,6 +41,3 @@ function TodoList() {
 }
 
 export default TodoList;
-
-    
-

@@ -1,13 +1,26 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import TodoList from './NewTask';
+import { render, screen, fireEvent } from '@testing-library/react';
+import NewTask from './NewTask'; 
 
-describe('TodoList Component', () => {
-    test('renders input and button', () => {
-        render(<TodoList />);
-        const inputElement = screen.getByRole('textbox');
-        const buttonElement = screen.getByText(/add todo/i);
-        expect(inputElement).toBeInTheDocument();
-        expect(buttonElement).toBeInTheDocument();
-    });
+describe('NewTask Component', () => {
+  test('changes class name on checkbox click', () => {
+    const { rerender } = render(<NewTask id={1} text="Test Task" />);
+
+    const taskElement = screen.getByText('Test Task').closest('li');
+    expect(taskElement).toHaveClass('incomplete');
+
+    
+    const checkbox = screen.getByRole('checkbox');
+    fireEvent.click(checkbox);
+
+   
+    rerender(<NewTask id={1} text="Test Task" />);
+    expect(taskElement).toHaveClass('completed');
+
+    
+    fireEvent.click(checkbox);
+
+    rerender(<NewTask id={1} text="Test Task" />);
+    expect(taskElement).toHaveClass('incomplete');
+  });
 });
